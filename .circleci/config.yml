@@ -9,3 +9,8 @@ jobs:
       - newman/newman-run:
           collection: ./SpecimensFinal.postman_collection.json
           environment: ./Testing.postman_environment.json
+workflows:
+  version: 2
+  workflow:
+    jobs:
+    - newman-collection-run
