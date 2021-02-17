@@ -9,8 +9,16 @@ jobs:
       - newman/newman-run:
           collection: ./SpecimensFinal.postman_collection.json
           environment: ./Testing.postman_environment.json
+  newman-collection-run2:
+    executor: newman/postman-newman-docker
+    steps:
+      - checkout
+      - newman/newman-run:
+          collection: ./DNA_Final.postman_collection.json
+          environment: ./Testing.postman_environment.json
 workflows:
   version: 2
   workflow:
     jobs:
     - newman-collection-run
+    - newman-collection-run2
