@@ -480,7 +480,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\t\"org_id\": \"2\",\r\n\t\"project_id\": \"2\",\r\n\t\"se_id\": \"4033\",\r\n\t\"sb_id\": \"37\",\r\n\t\"lab_id\": \"1\",\r\n\t\"sample_number\": \"02X\",\r\n\t\"external_case_id\": \"2004H2016\",\r\n\t\"mito_sequence_number\": \"212\",\r\n\t\"mito_sequence_subgroup\": \"a\",\r\n\t\"mito_sequence_similar\": \"212\",\r\n\t\"mito_match_count\": \"10\",\r\n    \"mito_total_count\": \"10000\",\r\n    \"mito_receive_date\": \"2020-01-17\"\r\n}",
+							"raw": "{\r\n\t\"org_id\": \"2\",\r\n\t\"project_id\": \"2\",\r\n\t\"se_id\": \"4032\",\r\n\t\"sb_id\": \"37\",\r\n\t\"lab_id\": \"1\",\r\n\t\"sample_number\": \"02X\",\r\n\t\"external_case_id\": \"2004H2016\",\r\n\t\"mito_sequence_number\": \"212\",\r\n\t\"mito_sequence_subgroup\": \"a\",\r\n\t\"mito_sequence_similar\": \"212\",\r\n\t\"mito_match_count\": \"10\",\r\n    \"mito_total_count\": \"10000\",\r\n    \"mito_receive_date\": \"2020-01-17\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
