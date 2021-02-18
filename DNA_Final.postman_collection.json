@@ -138,13 +138,13 @@
 									}
 								},
 								"url": {
-									"raw": "{{baseUrl}}/dnas/{{id}}",
+									"raw": "{{baseUrl}}/dnas/8233",
 									"host": [
 										"{{baseUrl}}"
 									],
 									"path": [
 										"dnas",
-										"{{id}}"
+										"8233"
 									]
 								}
 							},
@@ -431,13 +431,13 @@
 							}
 						],
 						"url": {
-							"raw": "{{baseUrl}}/dnas/{{did}}",
+							"raw": "{{baseUrl}}/dnas/8235",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"dnas",
-								"{{did}}"
+								"8235"
 							]
 						}
 					},
