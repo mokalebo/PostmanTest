@@ -148,7 +148,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n\t\"sample_number\": \"spring2020\",\r\n\t\"mito_sequence_number\": \"212\",\r\n\t\"mito_sequence_subgroup\": \"a\",\r\n\t\"mito_sequence_similar\": \"212\",\r\n\t\"mito_match_count\": \"10\",\r\n    \"mito_total_count\": \"11000\",\r\n    \"mito_receive_date\": \"2020-01-17\"\r\n}",
+									"raw": "{\r\n\t\"sample_number\": \"spring2021\",\r\n\t\"mito_sequence_number\": \"212\",\r\n\t\"mito_sequence_subgroup\": \"a\",\r\n\t\"mito_sequence_similar\": \"212\",\r\n\t\"mito_match_count\": \"10\",\r\n    \"mito_total_count\": \"11000\",\r\n    \"mito_receive_date\": \"2020-01-17\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -251,8 +251,24 @@
 						{
 							"name": "Delete DNA",
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{org_token}}",
+											"type": "string"
+										}
+									]
+								},
 								"method": "DELETE",
-								"header": [],
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
 								"url": {
 									"raw": "{{baseUrl}}/dnas/:id",
 									"host": [
@@ -265,7 +281,7 @@
 									"variable": [
 										{
 											"key": "id",
-											"value": "1",
+											"value": "8261",
 											"type": "string",
 											"description": "(Required) "
 										}
