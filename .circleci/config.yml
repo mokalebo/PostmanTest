@@ -14,7 +14,7 @@ jobs:
     steps:
       - checkout
       - newman/newman-run:
-          collection: ./DNA_Final.postman_collection.json
+          collection: https://www.getpostman.com/collections/c0905a0017394929e88d
           environment: ./Testing.postman_environment.json
 workflows:
   version: 2
