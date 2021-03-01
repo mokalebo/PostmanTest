@@ -7,5 +7,10 @@ jobs:
     steps:
       - checkout
       - newman/newman-run:
-          collection: ./SpecimensFinal.postman_collection.json
+          collection: ./isotope.postman_collection.json
           environment: ./Testing.postman_environment.json
+workflows:
+  version: 2
+  workflow:
+    jobs:
+    - newman-collection-run
