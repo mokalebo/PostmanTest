@@ -13,5 +13,8 @@ workflows:
   version: 2
   workflow:
     jobs:
-    - newman-collection-run
-    - newman-collection-run
+    - newman-collection-run:
+         filters:
+             branches:
+                only:
+                  - master
