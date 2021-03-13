@@ -20,11 +20,7 @@ workflows:
   version: 2
   workflow:
     jobs:
-    - newman-collection-run:
-         filters:
-             branches:
-                only:
-                  - Test-2
+    - newman-collection-run
     - newman-collection-run2:
          filters:
              branches:
