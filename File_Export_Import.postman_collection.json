@@ -1,0 +1,987 @@
+{
+	"info": {
+		"_postman_id": "ba37e17c-a88d-4d12-87a2-7c7bf214f9b6",
+		"name": "File Export / Import",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "files",
+			"item": [
+				{
+					"name": "export File Manager",
+					"item": [
+						{
+							"name": "View Exports",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Count Test\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"     tests[\"Count: \"  + jsonData.data.count] = true;\r",
+											"});\r",
+											"pm.test(\"Response time is less than 2000ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+											"});\r",
+											"pm.test(\"Fields Test\", function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"id\",\"filename\",\"export_type\",\"created_by\",\"created_at\");\r",
+											"});\r",
+											"pm.test(\"Response Test\", function () {\r",
+											"     pm.response.to.be.ok;\r",
+											"     pm.response.to.be.withBody;\r",
+											"     pm.response.to.be.json;\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"var filesrequestschema = { \r",
+											"    \"type\": [\"object\", \"array\"],\r",
+											"        \"required\": [\r",
+											"          \"data\",\r",
+											"          \"links\",\r",
+											"          \"meta\",\r",
+											"          \"status\"\r",
+											"        ],\r",
+											"        \"externalDocs\":{\r",
+											"            \"url\": \"https://github.com/SachinPawaskarUNO/cora25/blob/Spr21-%23820-Sprint3/docs/TechnicalManual/Database/CoRA%20Tables.md#import_file_details-table\"\r",
+											"        },\r",
+											"        \"properties\": {\r",
+											"            \"data\": {\r",
+											"            \"title\": \"The data schema\",\r",
+											"            \"description\": \"List of all file exports for Cora\",\r",
+											"            \"default\": [],\r",
+											"            \"items\": {\r",
+											"                \"anyOf\": [\r",
+											"                    {\r",
+											"                        \"type\": [\"object\", \"array\"],\r",
+											"                        \"title\": \"The first anyOf schema\",\r",
+											"                        \"description\": \"An explanation about the purpose of this instance.\",\r",
+											"                        \"default\": {},\r",
+											"                        \"properties\": {\r",
+											"                            \"id\": {\r",
+											"                                \"type\": \"integer\",\r",
+											"                                \"description\": \"\"\r",
+											"                            },\r",
+											"                            \"job_id\": {\r",
+											"                                \"type\": \"integer\",\r",
+											"                                \"description\": \"\"\r",
+											"                            },\r",
+											"                            \"type_id\": {\r",
+											"                                \"type\": \"integer\",\r",
+											"                                \"description\": \"\"\r",
+											"                            },\r",
+											"                            \"org_id\": {\r",
+											"                                \"type\": \"integer\",\r",
+											"                                \"description\": \"\"\r",
+											"                            },\r",
+											"                            \"project_id\": {\r",
+											"                                \"type\": \"integer\",\r",
+											"                                \"description\": \"\"\r",
+											"                            },\r",
+											"                            \"user_id\": {\r",
+											"                                \"type\": \"integer\",\r",
+											"                                \"description\": \"\"\r",
+											"                            },\r",
+											"                            \"filename\"\t: {\r",
+											"                                \"type\": \"string\",              \r",
+											"                                \"description\": \"\"\r",
+											"                            },\r",
+											"                            \"file_location\"\t: {\r",
+											"                                \"type\": \"string\",              \r",
+											"                                \"description\": \"\"\r",
+											"                            },\r",
+											"                            \"last_downloaded_at\"\t: {\r",
+											"                                \"type\": \"string\",\r",
+											"                                \"format\": \"date-time\",              \r",
+											"                                \"description\": \"\"\r",
+											"                            },\r",
+											"                            \"downloaded_by\"\t: {\r",
+											"                                \"type\": \"string\",              \r",
+											"                                \"description\": \"\"\r",
+											"                            },\r",
+											"                            \"num_downloads\"\t: {\r",
+											"                                \"type\": \"integer\",              \r",
+											"                                \"description\": \"\"\r",
+											"                            },\r",
+											"                            \"download_stats\" : {\r",
+											"                                \"type\": \"string\",              \r",
+											"                                \"description\": \"\"\r",
+											"                            },\t\t\t\t\t\t\t\t\t\t\r",
+											"                            \"created_by\": {\r",
+											"                                \"type\": \"string\",               \r",
+											"                                \"description\": \"\"\r",
+											"                            },\r",
+											"                            \"updated_by\": {\r",
+											"                                \"type\": \"string\",               \r",
+											"                                \"description\": \"\"\r",
+											"                            },\t\t\t\t\t\t\t\t\t\t\r",
+											"                            \"created_at\": {\r",
+											"                                \"type\": \"string\",\r",
+											"                                \"format\": \"date-time\",    \r",
+											"                                \"description\": \"Date and Time of creation\"    \r",
+											"                            },\t\t\t\t\t\t\t\t\t\t\r",
+											"                            \"updated_at\": {\r",
+											"                                \"type\": \"string\",\r",
+											"                                \"format\": \"date-time\",    \r",
+											"                                \"description\": \"Date and Time of last update\"    \r",
+											"                            },\t\t\t\t\t\t\t\t\t\t\t\r",
+											"                            \"deleted_at\": {\r",
+											"                                \"type\": \"string\",\r",
+											"                                \"format\": \"date-time\",     \r",
+											"                                \"description\": \"Date and Time of project deleted\"    \r",
+											"                            },\t\r",
+											"                                               \t\t\t\t\t\t\t\t\r",
+											"                            \"tag\": {\r",
+											"                                \"type\": \"string\"                               \r",
+											"                            }\r",
+											"                        },\r",
+											"                        \"additionalProperties\": true\r",
+											"                    }\r",
+											"                ]\r",
+											"            }\r",
+											"        },\r",
+											"        \"links\": {\r",
+											"            \"type\": \"object\",\r",
+											"            \"title\": \"The links schema\",\r",
+											"            \"description\": \"An explanation about the purpose of this instance.\",\r",
+											"            \"default\": {},\r",
+											"            \"properties\": {\r",
+											"                \"first\": {\r",
+											"                    \"type\": \"string\",\r",
+											"                    \"title\": \"The first schema\",\r",
+											"                    \"description\": \"An explanation about the purpose of this instance.\",\r",
+											"                    \"default\": \"\"\r",
+											"                },\r",
+											"                \"last\": {\r",
+											"                    \"type\": \"string\",\r",
+											"                    \"title\": \"The last schema\",\r",
+											"                    \"description\": \"An explanation about the purpose of this instance.\",\r",
+											"                    \"default\": \"\"\r",
+											"                },\r",
+											"                \"prev\": {\r",
+											"                    \"type\": \"string\",\r",
+											"                    \"title\": \"The prev schema\",\r",
+											"                    \"description\": \"An explanation about the purpose of this instance.\",\r",
+											"                    \"default\": null\r",
+											"                },\r",
+											"                \"next\": {\r",
+											"                    \"type\": \"string\",\r",
+											"                    \"title\": \"The next schema\",\r",
+											"                    \"description\": \"An explanation about the purpose of this instance.\",\r",
+											"                    \"default\": null\r",
+											"                }\r",
+											"            },\r",
+											"            \"additionalProperties\": true\r",
+											"        },\r",
+											"        \"meta\": {\r",
+											"            \"type\": \"object\",\r",
+											"            \"title\": \"The meta schema\",\r",
+											"            \"description\": \"An explanation about the purpose of this instance.\",\r",
+											"            \"default\": {},\r",
+											"            \"properties\": {\r",
+											"                \"current_page\": {\r",
+											"                    \"type\": \"integer\",\r",
+											"                    \"title\": \"The current_page schema\",\r",
+											"                    \"description\": \"Current page number.\",\r",
+											"                    \"default\": 0\r",
+											"                },\r",
+											"                \"from\": {\r",
+											"                    \"type\": \"integer\",\r",
+											"                    \"title\": \"The from schema\",\r",
+											"                    \"description\": \"Starting page number\",\r",
+											"                    \"default\": 0\r",
+											"                },\r",
+											"                \"last_page\": {\r",
+											"                    \"type\": \"integer\",\r",
+											"                    \"title\": \"The last_page schema\",\r",
+											"                    \"description\": \"Last page number\",\r",
+											"                    \"default\": 0\r",
+											"                },\r",
+											"                \"path\": {\r",
+											"                    \"type\": \"string\",\r",
+											"                    \"title\": \"The path schema\",\r",
+											"                    \"description\": \"API URL.\",\r",
+											"                    \"default\": \"\"\r",
+											"                },\r",
+											"                \"per_page\": {\r",
+											"                    \"type\": \"integer\",\r",
+											"                    \"title\": \"The per_page schema\",\r",
+											"                    \"description\": \"Results per page\",\r",
+											"                    \"default\": 0\r",
+											"                },\r",
+											"                \"to\": {\r",
+											"                    \"type\": \"integer\",\r",
+											"                    \"title\": \"The to schema\",\r",
+											"                    \"description\": \"Next page number\",\r",
+											"                    \"default\": 0\r",
+											"                },\r",
+											"                \"total\": {\r",
+											"                    \"type\": \"integer\",\r",
+											"                    \"title\": \"The total schema\",\r",
+											"                    \"description\": \"Total number of projects\",\r",
+											"                    \"default\": 0\r",
+											"                },\r",
+											"                \"app\": {\r",
+											"                    \"type\": \"string\",\r",
+											"                    \"title\": \"The app schema\",\r",
+											"                    \"description\": \"Application name\",\r",
+											"                    \"default\": \"\"\r",
+											"                },\r",
+											"                \"app_version\": {\r",
+											"                    \"type\": \"string\",\r",
+											"                    \"title\": \"The app_version schema\",\r",
+											"                    \"description\": \"Application version\",\r",
+											"                    \"default\": \"\"\r",
+											"                },\r",
+											"                \"api_version\": {\r",
+											"                    \"type\": \"string\",\r",
+											"                    \"title\": \"The api_version schema\",\r",
+											"                    \"description\": \"Version of API\",\r",
+											"                    \"default\": \"\"\r",
+											"                },\r",
+											"                \"author\": {\r",
+											"                    \"type\": \"string\",\r",
+											"                    \"title\": \"The author schema\",\r",
+											"                    \"description\": \"Author of application.\",\r",
+											"                    \"default\": \"\"\r",
+											"                },\r",
+											"                \"copyright\": {\r",
+											"                    \"type\": \"string\",\r",
+											"                    \"title\": \"The copyright schema\",\r",
+											"                    \"description\": \"Owner of application copyright.\",\r",
+											"                    \"default\": \"\"\r",
+											"                }\r",
+											"            },\r",
+											"            \"additionalProperties\": true\r",
+											"        },\r",
+											"        \"status\": {\r",
+											"            \"type\": \"string\",\r",
+											"            \"title\": \"The status schema\",\r",
+											"            \"description\": \"An explanation about the purpose of this instance.\",\r",
+											"            \"default\": \"\"\r",
+											"        }\r",
+											"        }\r",
+											"      }\r",
+											"\r",
+											"pm.collectionVariables.set('filesrequestschema', JSON.stringify(filesrequestschema))"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{org_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/files/exportFileManager",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"files",
+										"exportFileManager"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "unexpected error",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/files/exportFileManager",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"files",
+												"exportFileManager"
+											]
+										}
+									},
+									"status": "Internal Server Error",
+									"code": 500,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"code\": 56621074,\n \"message\": \"dolor aliqua voluptate ut exercitation\"\n}"
+								},
+								{
+									"name": "Get Export Type Details",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/files/exportFileManager",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"files",
+												"exportFileManager"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "x-next",
+											"value": "sunt magna ut aute ipsum",
+											"description": ""
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Get Export Types",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Count Test\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"     tests[\"Count: \"  + jsonData.data.count] = true;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Fields Test\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"id\",\"name\",\"description\",\"group\",\"table_names\",\"query\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response Test\", function () {\r",
+									"     pm.response.to.be.ok;\r",
+									"     pm.response.to.be.withBody;\r",
+									"     pm.response.to.be.json;\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{org_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/files/export-types",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"files",
+								"export-types"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Details about Export Types",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/files/export-types",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"files",
+										"export-types"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "x-next",
+									"value": "sunt magna ut aute ipsum",
+									"description": ""
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{}"
+						},
+						{
+							"name": "unexpected error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/files/export-types",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"files",
+										"export-types"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"code\": 56621074,\n \"message\": \"dolor aliqua voluptate ut exercitation\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Import Types",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Count Test\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"     tests[\"Count: \"  + jsonData.data.count] = true;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Fields Test\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"id\",\"name\",\"table_names\",\"display_name\",\"template_location\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response Test\", function () {\r",
+									"     pm.response.to.be.ok;\r",
+									"     pm.response.to.be.withBody;\r",
+									"     pm.response.to.be.json;\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{org_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/files/import-types",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"files",
+								"import-types"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Details about Import Types",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/files/import-types",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"files",
+										"import-types"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "x-next",
+									"value": "sunt magna ut aute ipsum",
+									"description": ""
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{}"
+						},
+						{
+							"name": "unexpected error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/files/import-types",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"files",
+										"import-types"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"code\": 56621074,\n \"message\": \"dolor aliqua voluptate ut exercitation\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Export Type Details",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"\r",
+									"pm.test(\"Fields Test\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"id\",\"name\",\"table_names\",\"display_name\",\"template_location\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response Test\", function () {\r",
+									"     pm.response.to.be.ok;\r",
+									"     pm.response.to.be.withBody;\r",
+									"     pm.response.to.be.json;\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{org_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/files/export-details/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"files",
+								"export-details",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "23"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "unexpected error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/files/export-details/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"files",
+										"export-details",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id"
+										}
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"code\": 56621074,\n \"message\": \"dolor aliqua voluptate ut exercitation\"\n}"
+						},
+						{
+							"name": "Get Export Type Details",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/files/export-details/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"files",
+										"export-details",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "x-next",
+									"value": "sunt magna ut aute ipsum",
+									"description": ""
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{}"
+						}
+					]
+				},
+				{
+					"name": "Export All Tables",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Content-Type header Test\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Response Test\", function () {\r",
+									"     pm.response.to.be.ok;\r",
+									"     pm.response.to.be.withBody;\r",
+									"     pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Fields Test\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"id\",\"name\",\"description\",\"group\",\"table_names\",\"query\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Saving the returned values\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    var id = jsonData.data.exportType.id\r",
+									"    pm.collectionVariables.set(\"export_detail_id\", id)\r",
+									"    var name = jsonData.data.exportType.name\r",
+									"    pm.collectionVariables.set(\"export_detail_name\", name)\r",
+									"    var description = jsonData.data.exportType.description\r",
+									"    pm.collectionVariables.set(\"export_detail_desc\", description)\r",
+									"    var group= jsonData.data.exportType.group\r",
+									"    pm.collectionVariables.set(\"export_detail_group\", group)\r",
+									"    var query = jsonData.data.exportType.query\r",
+									"    pm.collectionVariables.set(\"export_detail_query\", query)\r",
+									"    var tableNames = jsonData.data.exportType.table_names\r",
+									"    pm.collectionVariables.set(\"export_detail_tableNames\", tableNames)\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Checking the returned values\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    var id = pm.collectionVariables.get(\"export_detail_id\")\r",
+									"    var name = pm.collectionVariables.get(\"export_detail_name\")\r",
+									"    var description = pm.collectionVariables.get(\"export_detail_desc\")\r",
+									"    var group = pm.collectionVariables.get(\"export_detail_group\")\r",
+									"    var query = pm.collectionVariables.get(\"export_detail_query\")\r",
+									"    var tableNames = pm.collectionVariables.get(\"export_detail_tableNames\")\r",
+									"\r",
+									"\r",
+									"    pm.expect(jsonData.data.exportType.id).to.eql(id);\r",
+									"    pm.expect(jsonData.data.exportType.name).to.eql(name);\r",
+									"    pm.expect(jsonData.data.exportType.description).to.eql(description); \r",
+									"    pm.expect(jsonData.data.exportType.group).to.eql(group); \r",
+									"    pm.expect(jsonData.data.exportType.query).to.eql(query);\r",
+									"    pm.expect(jsonData.data.exportType.table_names).to.eql(tableNames);\r",
+									"  \r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{org_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/files/export-all-tables?id=23",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"files",
+								"export-all-tables"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "23"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "unexpected error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/files/export-all-tables",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"files",
+										"export-all-tables"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"code\": 56621074,\n \"message\": \"dolor aliqua voluptate ut exercitation\"\n}"
+						},
+						{
+							"name": "Export Tables",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/files/export-all-tables",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"files",
+										"export-all-tables"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "x-next",
+									"value": "sunt magna ut aute ipsum",
+									"description": ""
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{}"
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"const filesrequestschema = JSON.parse(pm.collectionVariables.get(\"filesrequestschema\"));",
+					"",
+					"",
+					"pm.test(\"Status Code\", () => {",
+					"  pm.expect(pm.response.code).to.be.oneOf([200,201,403,500,400,404]);",
+					"});",
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "importId",
+			"value": ""
+		},
+		{
+			"key": "export_detail_desc",
+			"value": ""
+		},
+		{
+			"key": "export_detail_group",
+			"value": ""
+		},
+		{
+			"key": "export_detail_id",
+			"value": ""
+		},
+		{
+			"key": "export_detail_name",
+			"value": ""
+		},
+		{
+			"key": "export_detail_query",
+			"value": ""
+		},
+		{
+			"key": "export_detail_tableNames",
+			"value": ""
+		},
+		{
+			"key": "tables",
+			"value": ""
+		},
+		{
+			"key": "includeTimestamps",
+			"value": ""
+		},
+		{
+			"key": "columns",
+			"value": ""
+		},
+		{
+			"key": "export_id",
+			"value": ""
+		},
+		{
+			"key": "exportTypeId",
+			"value": ""
+		},
+		{
+			"key": "filesrequestschema",
+			"value": ""
+		}
+	]
+}
