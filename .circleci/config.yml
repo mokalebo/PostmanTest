@@ -7,10 +7,11 @@ jobs:
     steps:
       - checkout
       - newman/newman-run:
-          collection: ./File_Export_Import.postman_collection.json
-          environment: ./Testing2.postman_environment.json
+          collection: ./Project.postman_collection.json
+          environment: ./Testing3.postman_environment.json
 workflows:
   version: 2
   workflow:
     jobs:
+    - newman-collection-run
     - newman-collection-run
