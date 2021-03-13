@@ -9,6 +9,13 @@ jobs:
       - newman/newman-run:
           collection: ./Project.postman_collection.json
           environment: ./Testing3.postman_environment.json
+  newman-collection-run2:
+    executor: newman/postman-newman-docker
+    steps:
+      - checkout
+      - newman/newman-run:
+          collection: ./File_Export_Import.postman_collection.json
+          environment: ./Testing3.postman_environment.json
 workflows:
   version: 2
   workflow:
@@ -17,5 +24,9 @@ workflows:
          filters:
              branches:
                 only:
-                  - master
-                  - Test-2
+                  - Test
+    - newman-collection-run2:
+         filters:
+             branches:
+                only:
+                  - Test
