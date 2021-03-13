@@ -24,7 +24,7 @@ workflows:
          filters:
              branches:
                 only:
-                  - Test
+                  - Test-2
     - newman-collection-run2:
          filters:
              branches:
