@@ -919,7 +919,7 @@
 			"script": {
 				"type": "text/javascript",
 				"exec": [
-					"const filesrequestschema = JSON.parse(pm.collectionVariables.get(\"filesrequestschema\"));",
+					"const filesrequestschema = JSON.parse(pm.environment.get(\"filesrequestschema\"));",
 					"",
 					"",
 					"pm.test(\"Status Code\", () => {",
