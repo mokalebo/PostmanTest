@@ -7,8 +7,8 @@ jobs:
     steps:
       - checkout
       - newman/newman-run:
-          collection: ./isotope.postman_collection.json
-          environment: ./Testing.postman_environment.json
+          collection: /File_Export_Import.postman_collection.json
+          environment: ./Testing2.postman_environment.json
 workflows:
   version: 2
   workflow:
